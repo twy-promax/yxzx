@@ -1,0 +1,176 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3,
+        "byte": 1048576
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "path": "/user/hive/warehouse/dim.db/dwd_dim_store_goods_i/${partition}",
+            "defaultFS": "hdfs://hadoop01:8020",
+            "fileType": "orc",
+            "fieldDelimiter": ",",
+            "skipHeader": false,
+            "column": [
+              {
+                "index": "0",
+                "type": "string"
+              },
+              {
+                "index": "1",
+                "type": "string"
+              },
+              {
+                "index": "2",
+                "type": "string"
+              },
+              {
+                "index": "3",
+                "type": "string"
+              },
+              {
+                "index": "4",
+                "type": "string"
+              },
+              {
+                "index": "5",
+                "type": "string"
+              },
+              {
+                "index": "6",
+                "type": "string"
+              },
+              {
+                "index": "7",
+                "type": "string"
+              },
+              {
+                "index": "8",
+                "type": "string"
+              },
+              {
+                "index": "9",
+                "type": "string"
+              },
+              {
+                "index": "10",
+                "type": "bigint"
+              },
+              {
+                "index": "11",
+                "type": "bigint"
+              },
+              {
+                "index": "12",
+                "type": "bigint"
+              },
+              {
+                "index": "13",
+                "type": "decimal"
+              },
+              {
+                "index": "14",
+                "type": "decimal"
+              },
+              {
+                "index": "15",
+                "type": "string"
+              },
+              {
+                "index": "16",
+                "type": "string"
+              },
+              {
+                "index": "17",
+                "type": "string"
+              },
+              {
+                "index": "18",
+                "type": "string"
+              },
+              {
+                "index": "19",
+                "type": "string"
+              },
+              {
+                "index": "20",
+                "type": "string"
+              },
+              {
+                "index": "21",
+                "type": "bigint"
+              },
+              {
+                "index": "22",
+                "type": "timestamp"
+              },
+              {
+                "index": "23",
+                "type": "timestamp"
+              },
+              {
+                "index": "24",
+                "type": "bigint"
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "postgresqlwriter",
+          "parameter": {
+            "username": "postgres",
+            "password": "itcast123",
+            "column": [
+              "\"uid\"",
+              "\"store_no\"",
+              "\"goods_no\"",
+              "\"goods_name\"",
+              "\"first_category_no\"",
+              "\"first_category_name\"",
+              "\"second_category_no\"",
+              "\"second_category_name\"",
+              "\"third_category_no\"",
+              "\"third_category_name\"",
+              "\"is_clear\"",
+              "\"is_must_order\"",
+              "\"is_orderable\"",
+              "\"order_multiple\"",
+              "\"min_order_qty\"",
+              "\"vendor_no\"",
+              "\"vendor_name\"",
+              "\"group_no\"",
+              "\"group_name\"",
+              "\"dc_no\"",
+              "\"dc_name\"",
+              "\"tag\"",
+              "\"create_time\"",
+              "\"update_time\"",
+              "\"is_deleted\""
+            ],
+            "preSql": [
+              "truncate table public.dwd_dim_store_goods_i"
+            ],
+            "connection": [
+              {
+                "table": [
+                  "public.dwd_dim_store_goods_i"
+                ],
+                "jdbcUrl": "jdbc:postgresql://192.168.88.80:5432/dw"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+

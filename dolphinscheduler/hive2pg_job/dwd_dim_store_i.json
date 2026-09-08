@@ -1,0 +1,161 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3,
+        "byte": 1048576
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "path": "/user/hive/warehouse/dim.db/dwd_dim_store_i/${partition}",
+            "defaultFS": "hdfs://hadoop01:8020",
+            "fileType": "orc",
+            "fieldDelimiter": ",",
+            "skipHeader": false,
+            "column": [
+              {
+                "index": "0",
+                "type": "bigint"
+              },
+              {
+                "index": "1",
+                "type": "string"
+              },
+              {
+                "index": "2",
+                "type": "string"
+              },
+              {
+                "index": "3",
+                "type": "bigint"
+              },
+              {
+                "index": "4",
+                "type": "bigint"
+              },
+              {
+                "index": "5",
+                "type": "bigint"
+              },
+              {
+                "index": "6",
+                "type": "string"
+              },
+              {
+                "index": "7",
+                "type": "string"
+              },
+              {
+                "index": "8",
+                "type": "string"
+              },
+              {
+                "index": "9",
+                "type": "bigint"
+              },
+              {
+                "index": "10",
+                "type": "string"
+              },
+              {
+                "index": "11",
+                "type": "string"
+              },
+              {
+                "index": "12",
+                "type": "string"
+              },
+              {
+                "index": "13",
+                "type": "string"
+              },
+              {
+                "index": "14",
+                "type": "string"
+              },
+              {
+                "index": "15",
+                "type": "bigint"
+              },
+              {
+                "index": "16",
+                "type": "bigint"
+              },
+              {
+                "index": "17",
+                "type": "timestamp"
+              },
+              {
+                "index": "18",
+                "type": "timestamp"
+              },
+              {
+                "index": "19",
+                "type": "decimal"
+              },
+              {
+                "index": "20",
+                "type": "string"
+              },
+              {
+                "index": "21",
+                "type": "bigint"
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "postgresqlwriter",
+          "parameter": {
+            "username": "postgres",
+            "password": "itcast123",
+            "column": [
+              "\"id\"",
+              "\"store_no\"",
+              "\"store_name\"",
+              "\"store_sale_type\"",
+              "\"store_type_code\"",
+              "\"city_id\"",
+              "\"city_name\"",
+              "\"region_code\"",
+              "\"region_name\"",
+              "\"worker_num\"",
+              "\"manager_name\"",
+              "\"telephone\"",
+              "\"opening_date\"",
+              "\"open_time\"",
+              "\"close_time\"",
+              "\"status\"",
+              "\"is_deleted\"",
+              "\"create_time\"",
+              "\"update_time\"",
+              "\"store_area\"",
+              "\"decoration_code\"",
+              "\"is_day_clear\""
+            ],
+            "preSql": [
+              "truncate table public.dwd_dim_store_i"
+            ],
+            "connection": [
+              {
+                "table": [
+                  "public.dwd_dim_store_i"
+                ],
+                "jdbcUrl": "jdbc:postgresql://192.168.88.80:5432/dw"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+

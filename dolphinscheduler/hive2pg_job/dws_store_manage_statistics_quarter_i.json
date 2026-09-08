@@ -1,0 +1,281 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3,
+        "byte": 1048576
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "path": "/user/hive/warehouse/dws.db/dws_store_manage_statistics_quarter_i/${partition}",
+            "defaultFS": "hdfs://hadoop01:8020",
+            "fileType": "orc",
+            "fieldDelimiter": ",",
+            "skipHeader": false,
+            "column": [
+              {
+                "index": "0",
+                "type": "string"
+              },
+              {
+                "index": "1",
+                "type": "string"
+              },
+              {
+                "index": "2",
+                "type": "string"
+              },
+              {
+                "index": "3",
+                "type": "bigint"
+              },
+              {
+                "index": "4",
+                "type": "bigint"
+              },
+              {
+                "index": "5",
+                "type": "bigint"
+              },
+              {
+                "index": "6",
+                "type": "string"
+              },
+              {
+                "index": "7",
+                "type": "string"
+              },
+              {
+                "index": "8",
+                "type": "bigint"
+              },
+              {
+                "index": "9",
+                "type": "bigint"
+              },
+              {
+                "index": "10",
+                "type": "bigint"
+              },
+              {
+                "index": "11",
+                "type": "decimal"
+              },
+              {
+                "index": "12",
+                "type": "bigint"
+              },
+              {
+                "index": "13",
+                "type": "string"
+              },
+              {
+                "index": "14",
+                "type": "string"
+              },
+              {
+                "index": "15",
+                "type": "string"
+              },
+              {
+                "index": "16",
+                "type": "bigint"
+              },
+              {
+                "index": "17",
+                "type": "bigint"
+              },
+              {
+                "index": "18",
+                "type": "decimal"
+              },
+              {
+                "index": "19",
+                "type": "decimal"
+              },
+              {
+                "index": "20",
+                "type": "decimal"
+              },
+              {
+                "index": "21",
+                "type": "decimal"
+              },
+              {
+                "index": "22",
+                "type": "decimal"
+              },
+              {
+                "index": "23",
+                "type": "decimal"
+              },
+              {
+                "index": "24",
+                "type": "decimal"
+              },
+              {
+                "index": "25",
+                "type": "bigint"
+              },
+              {
+                "index": "26",
+                "type": "bigint"
+              },
+              {
+                "index": "27",
+                "type": "decimal"
+              },
+              {
+                "index": "28",
+                "type": "decimal"
+              },
+              {
+                "index": "29",
+                "type": "decimal"
+              },
+              {
+                "index": "30",
+                "type": "decimal"
+              },
+              {
+                "index": "31",
+                "type": "decimal"
+              },
+              {
+                "index": "32",
+                "type": "decimal"
+              },
+              {
+                "index": "33",
+                "type": "decimal"
+              },
+              {
+                "index": "34",
+                "type": "bigint"
+              },
+              {
+                "index": "35",
+                "type": "bigint"
+              },
+              {
+                "index": "36",
+                "type": "decimal"
+              },
+              {
+                "index": "37",
+                "type": "decimal"
+              },
+              {
+                "index": "38",
+                "type": "decimal"
+              },
+              {
+                "index": "39",
+                "type": "decimal"
+              },
+              {
+                "index": "40",
+                "type": "bigint"
+              },
+              {
+                "index": "41",
+                "type": "bigint"
+              },
+              {
+                "index": "42",
+                "type": "decimal"
+              },
+              {
+                "index": "43",
+                "type": "bigint"
+              },
+              {
+                "index": "44",
+                "type": "decimal"
+              },
+              {
+                "index": "45",
+                "type": "bigint"
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "postgresqlwriter",
+          "parameter": {
+          "username": "postgres",
+            "password": "itcast123",
+            "column": [
+              "\"trade_date\"",
+              "\"week_trade_date\"",
+              "\"month_trade_date\"",
+              "\"hourly\"",
+              "\"quarter\"",
+              "\"quarters\"",
+              "\"store_no\"",
+              "\"store_name\"",
+              "\"store_sale_type\"",
+              "\"store_type_code\"",
+              "\"worker_num\"",
+              "\"store_area\"",
+              "\"city_id\"",
+              "\"city_name\"",
+              "\"region_code\"",
+              "\"region_name\"",
+              "\"is_day_clear\"",
+              "\"order_num\"",
+              "\"sale_qty\"",
+              "\"sale_amount\"",
+              "\"dis_amount\"",
+              "\"sale_cost\"",
+              "\"balance_amount\"",
+              "\"cancel_sale_amount\"",
+              "\"refund_sale_amount\"",
+              "\"online_order_num\"",
+              "\"offline_order_num\"",
+              "\"online_sale_amount\"",
+              "\"offline_sale_amount\"",
+              "\"online_sale_cost\"",
+              "\"offline_sale_cost\"",
+              "\"loss_amount\"",
+              "\"receipt_amount\"",
+              "\"require_amount\"",
+              "\"ol_mem_order_num\"",
+              "\"vip_mem_order_num\"",
+              "\"ol_mem_sale_amount\"",
+              "\"vip_mem_sale_amount\"",
+              "\"ol_mem_sale_cost\"",
+              "\"vip_mem_sale_cost\"",
+              "\"ol_mem_trade_num\"",
+              "\"vip_mem_trade_num\"",
+              "\"balance_sale_amount\"",
+              "\"balance_order_num\"",
+              "\"balance_sale_cost\"",
+              "\"balance_people_num\""
+            ],
+            "preSql": [
+              "delete from public.dws_store_manage_statistics_quarter_i where trade_date = to_date(substring('${partition}', 4), 'yyyy-MM-dd')"
+            ],
+            "connection": [
+              {
+                "table": [
+                  "public.dws_store_manage_statistics_quarter_i"
+                ],
+                "jdbcUrl": "jdbc:postgresql://192.168.88.80:5432/dw"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+

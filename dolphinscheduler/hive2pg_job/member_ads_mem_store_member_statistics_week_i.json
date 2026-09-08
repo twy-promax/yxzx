@@ -1,0 +1,226 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3,
+        "byte": 1048576
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "path": "/user/hive/warehouse/ads.db/ads_mem_store_member_statistics_week_i/${partition}",
+            "defaultFS": "hdfs://hadoop01:8020",
+            "fileType": "orc",
+            "fieldDelimiter": ",",
+            "skipHeader": false,
+            "column": [
+              {
+                "index": "0",
+                "type": "string"
+              },
+              {
+                "index": "1",
+                "type": "string"
+              },
+              {
+                "index": "2",
+                "type": "string"
+              },
+              {
+                "index": "3",
+                "type": "bigint"
+              },
+              {
+                "index": "4",
+                "type": "bigint"
+              },
+              {
+                "index": "5",
+                "type": "bigint"
+              },
+              {
+                "index": "6",
+                "type": "string"
+              },
+              {
+                "index": "7",
+                "type": "string"
+              },
+              {
+                "index": "8",
+                "type": "string"
+              },
+              {
+                "index": "9",
+                "type": "bigint"
+              },
+              {
+                "index": "10",
+                "type": "decimal"
+              },
+              {
+                "index": "11",
+                "type": "bigint"
+              },
+              {
+                "index": "12",
+                "type": "bigint"
+              },
+              {
+                "index": "13",
+                "type": "bigint"
+              },
+              {
+                "index": "14",
+                "type": "bigint"
+              },
+              {
+                "index": "15",
+                "type": "bigint"
+              },
+              {
+                "index": "16",
+                "type": "bigint"
+              },
+              {
+                "index": "17",
+                "type": "bigint"
+              },
+              {
+                "index": "18",
+                "type": "decimal"
+              },
+              {
+                "index": "19",
+                "type": "decimal"
+              },
+              {
+                "index": "20",
+                "type": "bigint"
+              },
+              {
+                "index": "21",
+                "type": "decimal"
+              },
+              {
+                "index": "22",
+                "type": "bigint"
+              },
+              {
+                "index": "23",
+                "type": "bigint"
+              },
+              {
+                "index": "24",
+                "type": "decimal"
+              },
+              {
+                "index": "25",
+                "type": "decimal"
+              },
+              {
+                "index": "26",
+                "type": "bigint"
+              },
+              {
+                "index": "27",
+                "type": "bigint"
+              },
+              {
+                "index": "28",
+                "type": "decimal"
+              },
+              {
+                "index": "29",
+                "type": "bigint"
+              },
+              {
+                "index": "30",
+                "type": "bigint"
+              },
+              {
+                "index": "31",
+                "type": "decimal"
+              },
+              {
+                "index": "32",
+                "type": "bigint"
+              },
+              {
+                "index": "33",
+                "type": "bigint"
+              },
+              {
+                "index": "34",
+                "type": "decimal"
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "postgresqlwriter",
+          "parameter": {
+            "username": "postgres",
+            "password": "itcast123",
+            "column": [
+              "\"trade_date\"",
+              "\"store_no\"",
+              "\"store_name\"",
+              "\"store_sale_type\"",
+              "\"store_type_code\"",
+              "\"city_id\"",
+              "\"city_name\"",
+              "\"region_code\"",
+              "\"region_name\"",
+              "\"is_day_clear\"",
+              "\"store_sale_amount\"",
+              "\"store_orders_number\"",
+              "\"register_member_num\"",
+              "\"register_member_num_all\"",
+              "\"register_recharge_num\"",
+              "\"rg_rc_td_num\"",
+              "\"register_trade_num\"",
+              "\"recharge_member_num\"",
+              "\"recharge_amount\"",
+              "\"recharge_amount_all\"",
+              "\"remain_member_num\"",
+              "\"remain_member_amount\"",
+              "\"balance_member_num\"",
+              "\"balance_member_order_num\"",
+              "\"balance_pay_amount\"",
+              "\"balance_member_amount\"",
+              "\"member_num\"",
+              "\"member_order_num\"",
+              "\"member_amount\"",
+              "\"member_first_num\"",
+              "\"member_first_order_num\"",
+              "\"member_first_amount\"",
+              "\"member_nofirst_num\"",
+              "\"member_nofirst_order_num\"",
+              "\"member_nofirst_amount\""
+            ],
+            "preSql": [
+              "delete from public.ads_mem_store_member_statistics_week_i where trade_date = to_date(substring('${partition}', 4), 'yyyy-MM-dd')"
+            ],
+            "connection": [
+              {
+                "table": [
+                  "public.ads_mem_store_member_statistics_week_i"
+                ],
+                "jdbcUrl": "jdbc:postgresql://192.168.88.80:5432/dw"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+

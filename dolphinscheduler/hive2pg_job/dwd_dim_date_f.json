@@ -1,0 +1,181 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3,
+        "byte": 1048576
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "path": "/user/hive/warehouse/dim.db/dwd_dim_date_f",
+            "defaultFS": "hdfs://hadoop01:8020",
+            "fileType": "orc",
+            "fieldDelimiter": ",",
+            "skipHeader": false,
+            "column": [
+              {
+                "index": "0",
+                "type": "string"
+              },
+              {
+                "index": "1",
+                "type": "bigint"
+              },
+              {
+                "index": "2",
+                "type": "bigint"
+              },
+              {
+                "index": "3",
+                "type": "bigint"
+              },
+              {
+                "index": "4",
+                "type": "bigint"
+              },
+              {
+                "index": "5",
+                "type": "string"
+              },
+              {
+                "index": "6",
+                "type": "string"
+              },
+              {
+                "index": "7",
+                "type": "string"
+              },
+              {
+                "index": "8",
+                "type": "string"
+              },
+              {
+                "index": "9",
+                "type": "string"
+              },
+              {
+                "index": "10",
+                "type": "string"
+              },
+              {
+                "index": "11",
+                "type": "string"
+              },
+              {
+                "index": "12",
+                "type": "string"
+              },
+              {
+                "index": "13",
+                "type": "string"
+              },
+              {
+                "index": "14",
+                "type": "bigint"
+              },
+              {
+                "index": "15",
+                "type": "bigint"
+              },
+              {
+                "index": "16",
+                "type": "bigint"
+              },
+              {
+                "index": "17",
+                "type": "bigint"
+              },
+              {
+                "index": "18",
+                "type": "bigint"
+              },
+              {
+                "index": "19",
+                "type": "string"
+              },
+              {
+                "index": "20",
+                "type": "string"
+              },
+              {
+                "index": "21",
+                "type": "string"
+              },
+              {
+                "index": "22",
+                "type": "string"
+              },
+              {
+                "index": "23",
+                "type": "string"
+              },
+              {
+                "index": "24",
+                "type": "string"
+              },
+              {
+                "index": "25",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "postgresqlwriter",
+          "parameter": {
+            "username": "postgres",
+            "password": "itcast123",
+            "column": [
+              "\"trade_date\"",
+              "\"year_code\"",
+              "\"month_code\"",
+              "\"day_code\"",
+              "\"quanter_code\"",
+              "\"quanter_name\"",
+              "\"week_trade_date\"",
+              "\"month_trade_date\"",
+              "\"week_end_date\"",
+              "\"month_end_date\"",
+              "\"last_week_trade_date\"",
+              "\"last_month_trade_date\"",
+              "\"last_week_end_date\"",
+              "\"last_month_end_date\"",
+              "\"year_week_code\"",
+              "\"week_day_code\"",
+              "\"day_year_num\"",
+              "\"month_days\"",
+              "\"is_weekend\"",
+              "\"days_after1\"",
+              "\"days_after2\"",
+              "\"days_after3\"",
+              "\"days_after4\"",
+              "\"days_after5\"",
+              "\"days_after6\"",
+              "\"days_after7\""
+            ],
+            "preSql": [
+              "truncate table public.dwd_dim_date_f"
+            ],
+            "connection": [
+              {
+                "table": [
+                  "public.dwd_dim_date_f"
+                ],
+                "jdbcUrl": "jdbc:postgresql://192.168.88.80:5432/dw"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,80 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 3,
+        "byte": 1048576
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "hdfsreader",
+          "parameter": {
+            "path": "/user/hive/warehouse/dim.db/dwd_dim_source_type_map_i/${partition}",
+            "defaultFS": "hdfs://hadoop01:8020",
+            "fileType": "orc",
+            "fieldDelimiter": ",",
+            "skipHeader": false,
+            "column": [
+              {
+                "index": "0",
+                "type": "string"
+              },
+              {
+                "index": "1",
+                "type": "bigint"
+              },
+              {
+                "index": "2",
+                "type": "string"
+              },
+              {
+                "index": "3",
+                "type": "bigint"
+              },
+              {
+                "index": "4",
+                "type": "string"
+              },
+              {
+                "index": "5",
+                "type": "bigint"
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "postgresqlwriter",
+          "parameter": {
+            "username": "postgres",
+            "password": "itcast123",
+            "column": [
+              "\"company\"",
+              "\"original_source_type\"",
+              "\"original_source_type_name\"",
+              "\"source_type\"",
+              "\"source_type_name\"",
+              "\"is_online\""
+            ],
+            "preSql": [
+              "truncate table public.dwd_dim_source_type_map_i"
+            ],
+            "connection": [
+              {
+                "table": [
+                  "public.dwd_dim_source_type_map_i"
+                ],
+                "jdbcUrl": "jdbc:postgresql://192.168.88.80:5432/dw"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
